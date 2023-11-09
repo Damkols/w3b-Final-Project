@@ -31,30 +31,49 @@ const Navbar = () => {
    </div>
 
    <div className="sm:flex hidden flex-row justify-end gap-4">
-    {address ? (
-     <CustomButton
-      btnType="button"
-      title="Create a proposal"
-      styles={address ? "bg-[#1dc071]" : "bg-[#8c6dfd]"}
-      handleClick={() => {
+    {address && (
+     <button
+      onClick={() => {
        if (address) navigate("proposals");
        else connect();
       }}
-     />
-    ) : (
-     <ConnectWallet
-      theme="dark"
-      auth={{
-       loginOptional: false,
-      }}
-     />
+      className="flex justify-center gap-2 items-center relative md:mx-3 rounded-xl border-2 overflow-hidden group py-2 px-4 font-semibold hover:text-white"
+     >
+      <div className="cursor-pointer inline-flex items-center gap-x-1 text-sm text-white decoration-2 font-medium dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
+       Create Proposal
+      </div>
+      <div className="cursor-pointer inline-flex items-center gap-x-1 text-sm text-white decoration-2 font-medium dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
+       <svg
+        class="flex-shrink-0 w-4 h-4"
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+       >
+        <path d="m9 18 6-6-6-6" />
+       </svg>
+      </div>
+     </button>
     )}
+    <ConnectWallet
+     theme="dark"
+     switchToActiveChain={true}
+     displayBalanceToken={{ 1: "ETH" }}
+     auth={{
+      loginOptional: false,
+     }}
+    />
 
-    <Link to="/profile">
+    {/* <Link to="/profile">
      <div className="w-[52px] h-[52px] rounded-full bg-[#2c2f32] flex justify-center items-center cursor-pointer">
       <img src={wlf} alt="user" className="w-[60%] h-[60%] object-contain" />
      </div>
-    </Link>
+    </Link> */}
    </div>
 
    {/* Small screen navigation */}
@@ -75,7 +94,7 @@ const Navbar = () => {
       !toggleDrawer ? "-translate-y-[100vh]" : "translate-y-0"
      } transition-all duration-700`}
     >
-     <ul className="mb-4">
+     <ul className="mb-4 z-10">
       {navlinks.map((link) => (
        <li
         key={link.name}
@@ -118,6 +137,8 @@ const Navbar = () => {
       ) : (
        <ConnectWallet
         theme="dark"
+        switchToActiveChain={true}
+        displayBalanceToken={{ 1: "ETH" }}
         auth={{
          loginOptional: false,
         }}

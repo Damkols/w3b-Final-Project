@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import Card from "./CardData";
 import { useAddress, useContract, useContractRead } from "@thirdweb-dev/react";
 import { Toaster, toast } from "react-hot-toast";
-import CreateCampaign from "./CreateCampaign";
+import CreateProposal from "./CreateProposal";
 import { ethers } from "ethers";
 import FundCard from "./FundCard";
 import { v4 as uuidv4 } from "uuid";
 
-export default function ActiveCampaigns({ contractAddress, abi }) {
+export default function AllCampaigns({ contractAddress, abi }) {
  const { contract } = useContract(contractAddress, abi);
  const address = useAddress();
  const [createCampaignModal, setCreateCampaignModal] = useState(false);
@@ -55,12 +55,11 @@ export default function ActiveCampaigns({ contractAddress, abi }) {
  return (
   <>
    <Toaster />
-   <div className="mt-20 md:text-left text-center">
-    {/* <div className="flex md:w-full md:justify-between justify-space-between mx-auto flex-wrap-reverse w-1/2"> */}
+   <div className="mt-10 md:mt-20 md:text-left text-center">
     <h1 className="md:text-4xl md:font-semibold text-white text-xl md:p-0 py-5">
-     Active Campaigns
+     All Campaigns
     </h1>
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-10 pt-4">
+    <div className="grid md:grid-cols-3 gap-10 pt-4 justify-center items-cente">
      {campaignsData.map((data) => (
       <FundCard
        key={uuidv4()}

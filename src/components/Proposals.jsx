@@ -1,18 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import Card from "./CardData";
 import { useAddress, useContract, useContractRead } from "@thirdweb-dev/react";
 import { Toaster, toast } from "react-hot-toast";
-// import CreateCampaign from "./CreateCampaign";
 import { ethers } from "ethers";
-import FundCard from "./FundCard";
-import myAbi from "../../abi.json";
-import CreateCampaign from "./CreateCampaign";
+import CreateProposal from "./CreateProposal";
 import ProposalCard from "./ProposalCard";
+import daoABi from "../abis/daoAbi.json";
 
 const Proposals = () => {
- const contractAddress = myAbi.address;
- const abi = myAbi.abi;
+ const contractAddress = daoABi.address;
+ const abi = daoABi.abi;
  const { contract } = useContract(contractAddress, abi);
  const address = useAddress();
  const [createProposalModal, setCreateProposalModal] = useState(false);
@@ -57,6 +54,8 @@ const Proposals = () => {
   getAllProposals();
  }, [data]);
 
+ const reversedProposalData = [...proposalData].reverse();
+
  return (
   <>
    <Toaster />
@@ -70,14 +69,14 @@ const Proposals = () => {
       <div className="absolute w-full h-full  bg-green-500 left-0 top-0 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500"></div>
       <div className="absolute w-full h-full  bg-green-500 left-0 top-0 transform -translate-y-full group-hover:translate-y-0 transition-transform duration-500"></div>
       <div className="absolute w-full h-full   bg-green-500 left-0 top-0 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500"></div>
-      <span className="relative z-10" onClick={showModal}>
+      <span className="relative" onClick={showModal}>
        Create Proposal
       </span>
      </button>
     </div>
 
     <div className="grid grid-cols-1 md:grid-cols-3 gap-10 pt-4">
-     {proposalData.map((data) => (
+     {reversedProposalData.map((data) => (
       <ProposalCard
        key={uuidv4()}
        data={data}
@@ -88,7 +87,7 @@ const Proposals = () => {
     </div>
    </div>
    {createProposalModal && (
-    <CreateCampaign
+    <CreateProposal
      showModal={showModal}
      closeModal={closeModal}
      contractAddress={contractAddress}

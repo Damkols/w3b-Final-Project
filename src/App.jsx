@@ -8,7 +8,7 @@ import "./index.css";
 import Details from "./components/Details.jsx";
 import Proposals from "./components/Proposals.jsx";
 import Home from "./pages/Home.jsx";
-import VoteOnProposals from "./components/VoteOnProposals.jsx";
+import ProposalDetails from "./components/ProposalDetails.jsx";
 
 export default function App() {
  const address = useAddress();
@@ -57,7 +57,7 @@ export default function App() {
       <Route path="/" element={<Home />} />
       <Route path="/details/:id" element={<Details />} />
       <Route path="/proposals" element={<Proposals />} />
-      <Route path="/proposal-details/:id" element={<VoteOnProposals />} />
+      <Route path="/proposal-details/:id" element={<ProposalDetails />} />
      </Routes>
     </div>
    </div>

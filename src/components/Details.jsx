@@ -6,16 +6,13 @@ import {
 } from "@thirdweb-dev/react";
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import Navbar from "./Navbar";
-import { MdDeleteForever } from "react-icons/md";
-import { AiOutlineEdit } from "react-icons/ai";
 import { Toaster, toast } from "react-hot-toast";
 import { PiMaskSadLight } from "react-icons/pi";
 import Contribute from "./ContributionModal";
 import { ethers } from "ethers";
-// import DeleteCampaign from "./DeleteModal";
-// import EditCampaign from "./EditModal";
 import myAbi from "../../abi.json";
+import { shortenAccount } from "../utils";
+import goEth from "../abis/goEth.json";
 
 export default function Details() {
  const navigate = useNavigate();
@@ -65,21 +62,21 @@ export default function Details() {
   contract,
   "claimContribution"
  );
- async function editFunction() {
-  if (!address) {
-   toast.error("Connect Wallet to delete");
-   return;
-  }
-  setEditModal(true);
- }
+ //  async function editFunction() {
+ //   if (!address) {
+ //    toast.error("Connect Wallet to delete");
+ //    return;
+ //   }
+ //   setEditModal(true);
+ //  }
 
- async function deleteFunction() {
-  if (!address) {
-   toast.error("Connect Wallet to delete");
-   return;
-  }
-  setDeleteModal(true);
- }
+ //  async function deleteFunction() {
+ //   if (!address) {
+ //    toast.error("Connect Wallet to delete");
+ //    return;
+ //   }
+ //   setDeleteModal(true);
+ //  }
  console.log(contribution);
 
  useEffect(() => {
@@ -127,7 +124,7 @@ export default function Details() {
  return (
   <>
    <Toaster />
-   <div className="my-10 text-3xl font-bold text-center mb-12">
+   <div className="my-10 text-3xl font-bold text-center mb-12 text-white">
     Details Page
    </div>
    <div className="flex flex-wrap w-5/6  mx-auto p-0 md:pl-20">
@@ -138,38 +135,11 @@ export default function Details() {
      />
     </div>
 
-    <div className="flex flex-col md:w-80 w-full justify-between text-center md:text-left mt-10 md:m-0">
+    <div className="flex flex-col md:w-80 w-full justify-between text-center md:text-left mt-10 md:m-0 text-white">
      <div className="md:h-1/2 h-2/3 border-b-8 border-green-400 flex flex-col justify-around">
       <h2 className="text-3xl font-bold mb-5">
        {title}
-       {address == owner && (
-        <>
-         {/* <button className="px-1" onClick={editFunction}>
-          <AiOutlineEdit className="text-4xl text-gray-600" />
-         </button> */}
-         {/* <EditCampaign
-          open={editModal}
-          onClose={() => setEditModal(false)}
-          campaignId={campaignId}
-          contractAddress={myAbi.address}
-          abi={myAbi.abi}
-          title={title}
-          description={description}
-          image={image}
-         /> */}
-         {/* <button onClick={deleteFunction}>
-          <MdDeleteForever className="text-4xl text-red-600" />
-         </button> */}
-         {/* <DeleteCampaign
-          open={deleteModal}
-          onClose={() => setDeleteModal(false)}
-          owner={owner}
-          campaignId={campaignId}
-          contractAddress={myAbi.address}
-          abi={myAbi.abi}
-         /> */}
-        </>
-       )}
+       {address == owner && <></>}
       </h2>
 
       <p className="mb-4 text-xl pb-5">{description}</p>
@@ -183,7 +153,8 @@ export default function Details() {
         target="_blank"
         rel="noreferrer"
        >
-        {owner.slice(0, 15)}...{owner.slice(32)}
+        {/* {owner.slice(0, 15)}...{owner.slice(32)} */}
+        {shortenAccount(owner)}
        </a>
       </div>
       <div>Target : {target} ETH</div>
@@ -197,10 +168,10 @@ export default function Details() {
      <button
       className="bg-white text-red-600 hover:bg-red-500 hover:text-white  p-3 mx-5 rounded-lg font-semibold"
       onClick={async () => {
-       if (raised < target) {
-        toast.error("Target not reached");
-        return;
-       }
+       //    if (raised < target) {
+       //     toast.error("Target not reached");
+       //     return;
+       //    }
 
        toast.loading("Claiming Contribution", {
         id: 2,

@@ -34,7 +34,7 @@ const FundCard = ({ data, contractAddress, abi }) => {
 
  return (
   <div
-   className="sm:w-[288px] w-full rounded-[15px] bg-[#1c1c24] cursor-pointer"
+   className="w-[288px] md:w-full rounded-[15px] bg-[#1c1c24] cursor-pointer"
    onClick={() =>
     navigate(`/details/${hash}`, {
      state: {
@@ -109,7 +109,7 @@ const FundCard = ({ data, contractAddress, abi }) => {
     </div>
 
     <div className="w-full m-auto mb-3 mt-3">
-     {raisedPercent * 100 > 1 ? (
+     {raisedPercent * 100 > 0 ? (
       <ProgressBar
        bgColor="#1dc071"
        completed={raisedPercent * 100}

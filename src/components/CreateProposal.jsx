@@ -4,18 +4,18 @@ import { toast } from "react-hot-toast";
 import { useContractWrite } from "@thirdweb-dev/react";
 import { ethers } from "ethers";
 
-const CreateCampaign = ({ showModal, closeModal, contractAddress, abi }) => {
+const CreateProposal = ({ showModal, closeModal, contractAddress, abi }) => {
  const { contract } = useContract(contractAddress, abi);
  const storage = useStorage();
- const [campaignImage, setCampaignImage] = useState("");
+ const [proposalImage, setProposalImage] = useState("");
  const [imageSet, setImageSet] = useState(false);
  const [title, setTitle] = useState("");
- const [description, setDescription] = useState("");
+ //  const [description, setDescription] = useState("");
  const [targetAmount, setTargetAmount] = useState(0);
  const [duration, setDuration] = useState(0);
  const { mutateAsync, isLoading, error } = useContractWrite(
   contract,
-  "createCampaign"
+  "createGofundme"
  );
 
  const handleImageUpload = async (event) => {
@@ -33,8 +33,8 @@ const CreateCampaign = ({ showModal, closeModal, contractAddress, abi }) => {
    // Assuming you want to upload the file to IPFS using the storage.upload function
    const cid = await storage.upload(file);
 
-   // Set the campaignImage state to the IPFS CID
-   setCampaignImage(cid);
+   // Set the proposalImage state to the IPFS CID
+   setProposalImage(cid);
    setImageSet(true);
 
    toast.success("Image uploaded successfully!", {
@@ -69,7 +69,7 @@ const CreateCampaign = ({ showModal, closeModal, contractAddress, abi }) => {
        onChange={handleImageUpload}
       />
       <div className="w-24 h-24 md:w-36 md:h-36 border-2 border-dashed border-gray-400 rounded-lg flex justify-center items-center cursor-pointer">
-       {imageSet ? <MediaRenderer src={campaignImage} /> : <p>Upload Image</p>}
+       {imageSet ? <MediaRenderer src={proposalImage} /> : <p>Upload Image</p>}
       </div>
      </label>
      <div className="md:ml-4 w-full">
@@ -85,7 +85,7 @@ const CreateCampaign = ({ showModal, closeModal, contractAddress, abi }) => {
        onChange={(e) => setTitle(e.target.value)}
       />
       {/* Description */}
-      <label htmlFor="description" className="block mb-1 font-semibold">
+      {/* <label htmlFor="description" className="block mb-1 font-semibold">
        Description
       </label>
       <textarea
@@ -94,7 +94,7 @@ const CreateCampaign = ({ showModal, closeModal, contractAddress, abi }) => {
        className="w-full px-4 py-2 rounded-lg border border-gray-300 mb-2 md:mb-4"
        value={description}
        onChange={(e) => setDescription(e.target.value)}
-      />
+      /> */}
       {/* Target Amount */}
       <label htmlFor="targetAmount" className="block mb-1 font-semibold">
        Target Amount
@@ -113,7 +113,7 @@ const CreateCampaign = ({ showModal, closeModal, contractAddress, abi }) => {
       <div className="relative">
        <select
         id="duration"
-        className="w-full px-4 py-2 rounded-lg border border-gray-300 mb-2 md:mb-4"
+        className="py-3 px-4 pe-9 block w-full bg-gray-100 border-transparent rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-gray-700 dark:border-transparent dark:text-gray-400 dark:focus:ring-gray-600"
         value={duration}
         onChange={(e) => setDuration(e.target.value)}
        >
@@ -149,18 +149,18 @@ const CreateCampaign = ({ showModal, closeModal, contractAddress, abi }) => {
         const durationInSeconds = Number(duration) * 24 * 60 * 60;
         console.log(
          title,
-         description,
-         campaignImage,
+         //  description,
+         proposalImage,
          Number(targetAmount),
          Number(duration)
         );
         await mutateAsync({
          args: [
           title.toString(),
-          description.toString(),
-          campaignImage.toString(),
+          //   description.toString(),
           ethers.utils.parseEther(targetAmount.toString()),
           durationInSeconds,
+          proposalImage.toString(),
          ],
         });
         toast.success("Campaign created successfully!", {
@@ -183,4 +183,4 @@ const CreateCampaign = ({ showModal, closeModal, contractAddress, abi }) => {
  );
 };
 
-export default CreateCampaign;
+export default CreateProposal;
