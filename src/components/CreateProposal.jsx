@@ -10,7 +10,7 @@ const CreateProposal = ({ showModal, closeModal, contractAddress, abi }) => {
  const [proposalImage, setProposalImage] = useState("");
  const [imageSet, setImageSet] = useState(false);
  const [title, setTitle] = useState("");
- //  const [description, setDescription] = useState("");
+ const [description, setDescription] = useState("");
  const [targetAmount, setTargetAmount] = useState(0);
  const [duration, setDuration] = useState(0);
  const { mutateAsync, isLoading, error } = useContractWrite(
@@ -85,7 +85,7 @@ const CreateProposal = ({ showModal, closeModal, contractAddress, abi }) => {
        onChange={(e) => setTitle(e.target.value)}
       />
       {/* Description */}
-      {/* <label htmlFor="description" className="block mb-1 font-semibold">
+      <label htmlFor="description" className="block mb-1 font-semibold">
        Description
       </label>
       <textarea
@@ -94,7 +94,7 @@ const CreateProposal = ({ showModal, closeModal, contractAddress, abi }) => {
        className="w-full px-4 py-2 rounded-lg border border-gray-300 mb-2 md:mb-4"
        value={description}
        onChange={(e) => setDescription(e.target.value)}
-      /> */}
+      />
       {/* Target Amount */}
       <label htmlFor="targetAmount" className="block mb-1 font-semibold">
        Target Amount
@@ -149,7 +149,7 @@ const CreateProposal = ({ showModal, closeModal, contractAddress, abi }) => {
         const durationInSeconds = Number(duration) * 24 * 60 * 60;
         console.log(
          title,
-         //  description,
+         description,
          proposalImage,
          Number(targetAmount),
          Number(duration)
@@ -157,7 +157,7 @@ const CreateProposal = ({ showModal, closeModal, contractAddress, abi }) => {
         await mutateAsync({
          args: [
           title.toString(),
-          //   description.toString(),
+          description.toString(),
           ethers.utils.parseEther(targetAmount.toString()),
           durationInSeconds,
           proposalImage.toString(),

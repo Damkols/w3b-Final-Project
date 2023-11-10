@@ -10,13 +10,16 @@ import { Toaster, toast } from "react-hot-toast";
 import { PiMaskSadLight } from "react-icons/pi";
 import Contribute from "./ContributionModal";
 import { ethers } from "ethers";
+import { v4 as uuidv4 } from "uuid";
 import myAbi from "../../abi.json";
 import { shortenAccount } from "../utils";
 import goEth from "../abis/goEth.json";
 
 export default function Details() {
  const navigate = useNavigate();
- const { contract } = useContract(myAbi.address, myAbi.abi);
+ const contractAddress = goEth.address;
+ const abi = goEth.abi;
+ const { contract } = useContract(contractAddress, abi);
 
  const { state } = useLocation();
  const {
@@ -38,29 +41,27 @@ export default function Details() {
  const [deleteModal, setDeleteModal] = useState(false);
  const [editModal, setEditModal] = useState(false);
  const {
-  data: contributions,
+  data: contributors,
   isLoading,
   isError,
- } = useContractRead(contract, "getAllContributionsForParticularCampaign", [
-  campaignId,
- ]);
+ } = useContractRead(contract, "getContributors", [campaignId]);
 
  async function getAllContributions() {
-  if (contributions) {
-   const filter = contributions.map((data) => {
+  if (contributors) {
+   const filter = contributors.map((data) => {
     return {
-     id: data.contributionId.toNumber(),
-     amount: ethers.utils.formatEther(data.amount),
+     //  id: data.contributors.toNumber(),
+     amount: ethers.utils.formatEther(data.balance),
      contributor: data.contributor.toString(),
-     date: data.date.toNumber() * 1000,
+     //  date: data.date.toNumber() * 1000,
     };
    });
    setContribution(filter);
   }
  }
- const { mutateAsync: contributeCall } = useContractWrite(
+ const { mutateAsync: getContributedFundsCall } = useContractWrite(
   contract,
-  "claimContribution"
+  "getContributedFunds"
  );
  //  async function editFunction() {
  //   if (!address) {
@@ -81,7 +82,7 @@ export default function Details() {
 
  useEffect(() => {
   getAllContributions();
- }, [contributions]);
+ }, [contributors]);
 
  async function contributeToCampaign() {
   if (!address) {
@@ -177,7 +178,7 @@ export default function Details() {
         id: 2,
        });
        try {
-        await contributeCall({
+        await getContributedFundsCall({
          args: [campaignId],
         });
         toast.success("Claimed Succesfully", {
@@ -210,8 +211,8 @@ export default function Details() {
      campaignTitle={title}
      owner={owner}
      campaignId={campaignId}
-     contractAddress={myAbi.address}
-     abi={myAbi.abi}
+     contractAddress={contractAddress}
+     abi={abi}
     />
    </div>
    {contribution.length > 0 && (
@@ -232,12 +233,12 @@ export default function Details() {
       </thead>
       <tbody className="max-h-96 h-10 overflow-y-auto">
        {contribution.map((contri) => (
-        <tr key={contri.id} className="">
+        <tr key={uuidv4()} className="">
          <td className="md:px-6 px-2 py-3">{contri.contributor}</td>
          <td className="md:pl-7 px-2 py-3">{contri.amount} ETH</td>
-         <td className="md:px-6 px-2 py-3">
+         {/* <td className="md:px-6 px-2 py-3">
           {new Date(contri.date).toLocaleDateString()}
-         </td>
+         </td> */}
         </tr>
        ))}
       </tbody>

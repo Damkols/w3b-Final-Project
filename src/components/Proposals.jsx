@@ -6,6 +6,7 @@ import { ethers } from "ethers";
 import CreateProposal from "./CreateProposal";
 import ProposalCard from "./ProposalCard";
 import daoABi from "../abis/daoAbi.json";
+import myAbi from "../../abi.json";
 
 const Proposals = () => {
  const contractAddress = daoABi.address;
@@ -14,7 +15,10 @@ const Proposals = () => {
  const address = useAddress();
  const [createProposalModal, setCreateProposalModal] = useState(false);
  const [proposalData, setProposalData] = useState([]);
- const { data, isLoading, error } = useContractRead(contract, "getCampaigns");
+ const { data, isLoading, error } = useContractRead(
+  contract,
+  "getAllProposals"
+ );
 
  async function showModal() {
   if (address) {
@@ -32,20 +36,20 @@ const Proposals = () => {
   // Filter for only active and ended
   const proposals = data.map((proposal) => {
    return {
-    id: proposal.campaignId.toNumber(),
-    title: proposal.campaignTitle,
-    description: proposal.campaignDescription,
-    image: proposal.campaignImageCID,
-    target: ethers.utils.formatEther(proposal.targetAmount),
-    raised: ethers.utils.formatEther(proposal.raisedAmount),
-    endAt: new Date(proposal.endAt.toNumber() * 1000),
-    status: proposal.status,
-    owner: proposal.campaignOwner,
+    id: proposal.id_.toNumber(),
+    title: proposal.title,
+    description: proposal.description,
+    image: proposal.tokenUri,
+    target: ethers.utils.formatEther(proposal.fundingGoal),
+    raised: ethers.utils.formatEther(proposal.fundingBalance),
+    endAt: new Date(proposal.durationTime.toNumber() * 1000),
+    status: proposal.isActive,
+    owner: proposal.owner,
    };
   });
-  const today = new Date();
+  //   const today = new Date();
   const activeProposals = proposals.filter(
-   (proposal) => proposal.status === true && proposal.endAt > today
+   (proposal) => proposal.status === true
   );
   setProposalData(activeProposals);
   console.log(activeProposals);
@@ -54,6 +58,7 @@ const Proposals = () => {
   getAllProposals();
  }, [data]);
 
+ console.log(proposalData);
  const reversedProposalData = [...proposalData].reverse();
 
  return (

@@ -1,5 +1,5 @@
 {
- "address": "0x20245a8D305EBD3Ff4B80c176922703c366Cfc1c",
+ "address": "0x3da520D01FEcbf1f1772b839Cf529BFe8Bc862ec",
  "abi": [
   {
    "inputs": [
@@ -16,6 +16,8 @@
   },
   { "inputs": [], "name": "AlreadyVoted", "type": "error" },
   { "inputs": [], "name": "NotActive", "type": "error" },
+  { "inputs": [], "name": "NotAdmin", "type": "error" },
+  { "inputs": [], "name": "NotDAOMember", "type": "error" },
   { "inputs": [], "name": "NotEligible", "type": "error" },
   { "inputs": [], "name": "NotMember", "type": "error" },
   { "inputs": [], "name": "NotYetTime", "type": "error" },
@@ -137,6 +139,31 @@
    "type": "event"
   },
   {
+   "inputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+   "name": "activeProposals",
+   "outputs": [
+    { "internalType": "uint256", "name": "id_", "type": "uint256" },
+    { "internalType": "string", "name": "title", "type": "string" },
+    { "internalType": "string", "name": "description", "type": "string" },
+    { "internalType": "uint256", "name": "fundingGoal", "type": "uint256" },
+    { "internalType": "address", "name": "owner", "type": "address" },
+    { "internalType": "uint256", "name": "startTime", "type": "uint256" },
+    { "internalType": "uint256", "name": "durationTime", "type": "uint256" },
+    { "internalType": "bool", "name": "isActive", "type": "bool" },
+    { "internalType": "uint256", "name": "fundingBalance", "type": "uint256" },
+    { "internalType": "string", "name": "tokenUri", "type": "string" },
+    {
+     "internalType": "contract RewardsNft",
+     "name": "nftAddress",
+     "type": "address"
+    },
+    { "internalType": "uint256", "name": "yayvotes", "type": "uint256" },
+    { "internalType": "uint256", "name": "nayvotes", "type": "uint256" }
+   ],
+   "stateMutability": "view",
+   "type": "function"
+  },
+  {
    "inputs": [{ "internalType": "uint256", "name": "_id", "type": "uint256" }],
    "name": "approveProposal",
    "outputs": [],
@@ -146,6 +173,7 @@
   {
    "inputs": [
     { "internalType": "string", "name": "_title", "type": "string" },
+    { "internalType": "string", "name": "_description", "type": "string" },
     { "internalType": "uint256", "name": "_fundingGoal", "type": "uint256" },
     { "internalType": "uint256", "name": "_durationTime", "type": "uint256" },
     { "internalType": "string", "name": "imageUrl", "type": "string" }
@@ -170,8 +198,10 @@
    "outputs": [
     { "internalType": "uint256", "name": "id_", "type": "uint256" },
     { "internalType": "string", "name": "title", "type": "string" },
+    { "internalType": "string", "name": "description", "type": "string" },
     { "internalType": "uint256", "name": "fundingGoal", "type": "uint256" },
     { "internalType": "address", "name": "owner", "type": "address" },
+    { "internalType": "uint256", "name": "startTime", "type": "uint256" },
     { "internalType": "uint256", "name": "durationTime", "type": "uint256" },
     { "internalType": "bool", "name": "isActive", "type": "bool" },
     { "internalType": "uint256", "name": "fundingBalance", "type": "uint256" },
@@ -183,6 +213,54 @@
     },
     { "internalType": "uint256", "name": "yayvotes", "type": "uint256" },
     { "internalType": "uint256", "name": "nayvotes", "type": "uint256" }
+   ],
+   "stateMutability": "view",
+   "type": "function"
+  },
+  {
+   "inputs": [],
+   "name": "getAllProposalCount",
+   "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+   "stateMutability": "view",
+   "type": "function"
+  },
+  {
+   "inputs": [],
+   "name": "getAllProposals",
+   "outputs": [
+    {
+     "components": [
+      { "internalType": "uint256", "name": "id_", "type": "uint256" },
+      { "internalType": "string", "name": "title", "type": "string" },
+      { "internalType": "string", "name": "description", "type": "string" },
+      { "internalType": "uint256", "name": "fundingGoal", "type": "uint256" },
+      { "internalType": "address", "name": "owner", "type": "address" },
+      { "internalType": "uint256", "name": "startTime", "type": "uint256" },
+      { "internalType": "uint256", "name": "durationTime", "type": "uint256" },
+      { "internalType": "bool", "name": "isActive", "type": "bool" },
+      {
+       "internalType": "uint256",
+       "name": "fundingBalance",
+       "type": "uint256"
+      },
+      { "internalType": "string", "name": "tokenUri", "type": "string" },
+      {
+       "internalType": "contract RewardsNft",
+       "name": "nftAddress",
+       "type": "address"
+      },
+      {
+       "internalType": "address[]",
+       "name": "contributors",
+       "type": "address[]"
+      },
+      { "internalType": "uint256", "name": "yayvotes", "type": "uint256" },
+      { "internalType": "uint256", "name": "nayvotes", "type": "uint256" }
+     ],
+     "internalType": "struct GoFund[]",
+     "name": "",
+     "type": "tuple[]"
+    }
    ],
    "stateMutability": "view",
    "type": "function"

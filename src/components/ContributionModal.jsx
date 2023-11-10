@@ -19,17 +19,17 @@ function Contribute({
   mutateAsync: contributeCall,
   isLoading,
   error,
- } = useContractWrite(contract, "contribute");
+ } = useContractWrite(contract, "contributeEth");
  const [amount, setAmount] = useState("");
  const [confettiCelebration, setConfettiCelebration] = useState(false);
 
  const handleInput = (e) => {
   const value = e.target.value;
 
-  if (value <= 0) {
-   toast.error("Amount must be greater than 0");
-   return;
-  }
+  //   if (value < 0.001) {
+  //    toast.error("Amount must be greater than 0.001");
+  //    return;
+  //   }
 
   setAmount(value);
  };

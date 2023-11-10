@@ -1,5 +1,4 @@
-import { Web3Button, useContract, useContractWrite } from "@thirdweb-dev/react";
-import { utils } from "ethers";
+import { useContract, useContractWrite } from "@thirdweb-dev/react";
 import { useState } from "react";
 import { Toaster, toast } from "react-hot-toast";
 import ConfettiExplosion from "react-confetti-explosion";
@@ -47,28 +46,78 @@ function VoteModal({
      <p className="text-sm text-pink-500 text-center mb-4">
       Created by {owner}
      </p>
-     <div className="flex gap-3">
-      <Web3Button
+     <div className="flex justify-center items-center gap-3 mt-10">
+      <button
+       className="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-green-500 text-white hover:bg-green-600 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
        contractAddress={contractAddress}
-       action={(contract) => contract.call("vote", { args: [campaignId, 0] })}
+       onClick={async () => {
+        toast.loading("Voting for proposal...", {
+         id: 2,
+        });
+        try {
+         await voteCall({
+          args: [campaignId, 0],
+         });
+         toast.success("Voted Succesfully", {
+          id: 2,
+         });
+         setConfettiCelebration(true);
+         onClose();
+         setAmount("");
+         setTimeout(() => {
+          // Code to run
+          navigate("/");
+         }, 5000);
+        } catch (error) {
+         toast.error("Error voting for proposal.", {
+          id: 2,
+         });
+         console.error(error);
+        }
+       }}
       >
        Yay
-      </Web3Button>
-      <Web3Button
+      </button>
+      <button
+       className="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-yellow-500 text-white hover:bg-yellow-600 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
        contractAddress={contractAddress}
-       action={(contract) => contract.call("vote", { args: [campaignId, 1] })}
+       onClick={async () => {
+        toast.loading("Voting for proposal...", {
+         id: 2,
+        });
+        try {
+         await voteCall({
+          args: [campaignId, 1],
+         });
+         toast.success("Voted Succesfully", {
+          id: 2,
+         });
+         setConfettiCelebration(true);
+         onClose();
+         setAmount("");
+         setTimeout(() => {
+          // Code to run
+          navigate("/");
+         }, 5000);
+        } catch (error) {
+         toast.error("Error voting for proposal.", {
+          id: 2,
+         });
+         console.error(error);
+        }
+       }}
       >
        Nay
-      </Web3Button>
+      </button>
      </div>
      <div className="flex justify-around pt-5">
       <button
-       className="bg-red-500 text-white font-xl rounded-lg p-3 px-4"
+       className="bg-red-500 mt-5 text-white font-xl rounded-lg p-3 px-4"
        onClick={onClose}
       >
        Cancel
       </button>
-      <button
+      {/* <button
        className="bg-purple-500 text-white font-xl rounded-lg p-3 px-4"
        onClick={async () => {
         toast.loading("Voting for proposal...", {
@@ -76,11 +125,7 @@ function VoteModal({
         });
         try {
          await voteCall({
-          args: [campaignId],
-          //   overrides: {
-          //    value: utils.parseEther(amount.toString()),
-          //    gasLimit: 1000000, // override default gas limit
-          //   },
+          args: [campaignId, 0],
          });
          toast.success("Voted Succesfully", {
           id: 2,
@@ -101,7 +146,7 @@ function VoteModal({
        }}
       >
        Vote
-      </button>
+      </button> */}
       {confettiCelebration && <ConfettiExplosion />}
      </div>
     </div>

@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
-import Card from "./CardData";
 import { useAddress, useContract, useContractRead } from "@thirdweb-dev/react";
 import { Toaster, toast } from "react-hot-toast";
-import CreateProposal from "./CreateProposal";
 import { ethers } from "ethers";
 import FundCard from "./FundCard";
 import { v4 as uuidv4 } from "uuid";
@@ -30,20 +28,20 @@ export default function AllCampaigns({ contractAddress, abi }) {
   // Filter for only active and ended
   const campaigns = data.map((campaign) => {
    return {
-    id: campaign.campaignId.toNumber(),
-    title: campaign.campaignTitle,
-    description: campaign.campaignDescription,
-    image: campaign.campaignImageCID,
-    target: ethers.utils.formatEther(campaign.targetAmount),
-    raised: ethers.utils.formatEther(campaign.raisedAmount),
-    endAt: new Date(campaign.endAt.toNumber() * 1000),
-    status: campaign.status,
-    owner: campaign.campaignOwner,
+    id: campaign.id_.toNumber(),
+    title: campaign.title,
+    description: campaign.description,
+    image: campaign.tokenUri,
+    target: ethers.utils.formatEther(campaign.fundingGoal),
+    raised: ethers.utils.formatEther(campaign.fundingBalance),
+    endAt: new Date(campaign.durationTime.toNumber() * 1000),
+    status: campaign.isActive,
+    owner: campaign.owner,
    };
   });
   const today = new Date();
   const activeCampaigns = campaigns.filter(
-   (campaign) => campaign.status === true && campaign.endAt > today
+   (campaign) => campaign.status === true
   );
   setCampaignsData(activeCampaigns);
   console.log(activeCampaigns);
@@ -51,6 +49,8 @@ export default function AllCampaigns({ contractAddress, abi }) {
  useEffect(() => {
   getAllCampaigns();
  }, [data]);
+
+ console.log(campaignsData);
 
  return (
   <>

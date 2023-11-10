@@ -30,8 +30,8 @@ const ProposalCard = ({ data, contractAddress, abi }) => {
       {data.title.length > 17 ? data.title.slice(0, 17) + "..." : data.title}
      </h3>
      <p className="mt-1 text-gray-500 dark:text-gray-400">
-      {data.description.length > 50
-       ? data.description.slice(0, 50) + "..."
+      {data.description.length > 40
+       ? data.description.slice(0, 40) + "..."
        : data.description}
      </p>
      <div
