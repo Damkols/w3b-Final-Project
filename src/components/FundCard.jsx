@@ -30,9 +30,6 @@ const FundCard = ({ data, contractAddress, abi }) => {
   const gatewayUrl = `https://ipfs.io/ipfs/${url.split("//")[1]}`;
   const dateInSeconds = Math.floor(new Date(data.endAt).getTime() / 1000);
 
-  console.log(data);
-  console.log(data.raised);
-
   return (
     <div
       className="w-[288px] md:w-full rounded-[15px] dark:bg-[#1c1c24] bg-white cursor-pointer"

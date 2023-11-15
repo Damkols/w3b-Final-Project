@@ -44,13 +44,10 @@ export default function AllCampaigns({ contractAddress, abi }) {
       (campaign) => campaign.status === true
     );
     setCampaignsData(activeCampaigns);
-    console.log(activeCampaigns);
   }
   useEffect(() => {
     getAllCampaigns();
   }, [data]);
-
-  console.log(campaignsData);
 
   const reversedcampaignsData = [...campaignsData].reverse();
 

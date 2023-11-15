@@ -1,10 +1,8 @@
 import React, { useState } from "react";
-import Details from "./Details";
 import { useNavigate } from "react-router-dom";
 import { ethers } from "ethers";
-import { shortenAccount } from "../utils";
 
-const ProposalCard = ({ data, contractAddress, abi }) => {
+const ProposalCard = ({ data }) => {
   const navigate = useNavigate();
   const url = data.image;
   const raisedPercent = data.raised / data.target;
@@ -19,7 +17,6 @@ const ProposalCard = ({ data, contractAddress, abi }) => {
 
   return (
     <div className="w-[288px] md:w-full rounded-[15px] dark:bg-[#1c1c24] bg-white cursor-pointer">
-      {/* <div className="flex flex-col bg-white border shadow-sm rounded-xl dark:bg-slate-900 dark:border-gray-700 dark:shadow-slate-700/[.7]"> */}
       <img
         className="w-full rounded-t-xl h-[300px] object-cover rounded-[15px]"
         src={gatewayUrl}
@@ -57,7 +54,6 @@ const ProposalCard = ({ data, contractAddress, abi }) => {
           Vote
         </div>
       </div>
-      {/* </div> */}
     </div>
   );
 };

@@ -78,7 +78,6 @@ export default function Details() {
   //   }
   //   setDeleteModal(true);
   //  }
-  console.log(contribution);
 
   useEffect(() => {
     getAllContributions();
@@ -91,37 +90,7 @@ export default function Details() {
       setContributionModal(true);
     }
   }
-  //  const connectToSepoliaTestnet = async () => {
-  //   const desiredChainId = "0xAA36A7"; // Chain ID 11155111 in hexadecimal
-  //   if (address) {
-  //    if (window.ethereum) {
-  //     const chainId = await window.ethereum.request({
-  //      method: "eth_chainId",
-  //     });
 
-  //     // Check if connected to a different network (not Sepolia testnet)
-  //     if (chainId !== desiredChainId) {
-  //      // ChainId of Sepolia testnet is '0xAA36A7'
-  //      try {
-  //       await window.ethereum.request({
-  //        method: "wallet_switchEthereumChain",
-  //        params: [{ chainId: desiredChainId }],
-  //       });
-  //      } catch (error) {
-  //       // Handle error
-  //       console.log("Error while switching to zkEVM testnet:", error);
-  //      }
-  //     }
-  //    } else {
-  //     // Handle case where window.ethereum is not available
-  //     console.log("Metamask not available");
-  //    }
-  //   }
-  //  };
-  //  useEffect(() => {
-  //   connectToSepoliaTestnet();
-  //  }, [address]);
-  console.log(raised);
   return (
     <>
       <Toaster />

@@ -52,13 +52,11 @@ const Proposals = () => {
       (proposal) => proposal.status === true
     );
     setProposalData(activeProposals);
-    console.log(activeProposals);
   }
   useEffect(() => {
     getAllProposals();
   }, [data]);
 
-  console.log(proposalData);
   const reversedProposalData = [...proposalData].reverse();
 
   return (
