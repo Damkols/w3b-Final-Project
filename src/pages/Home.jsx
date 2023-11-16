@@ -1,14 +1,25 @@
 import React from "react";
-import AllCampaigns from "../components/AllCampaigns";
-import goEth from "../abis/goEth.json";
+import Hero from "../landing/Hero";
+import Footer from "../landing/Footer";
+import Navbar from "../components/Navbar";
+import Service from "../landing/Services";
+import Partners from "../landing/Partners";
+import Events from "../landing/Events";
+import Charity from "../landing/Charity";
+import Donate from "../landing/Donate";
 
 const Home = () => {
-  const contractAddress = goEth.address;
-  const abi = goEth.abi;
   return (
-    <>
-      <AllCampaigns contractAddress={contractAddress} abi={abi} />
-    </>
+    <div>
+      <Navbar />
+      <Hero />
+      <Service />
+      <Partners />
+      <Charity />
+      <Donate />
+      <Events />
+      <Footer />
+    </div>
   );
 };
 

@@ -98,7 +98,7 @@ const ProposalDetails = () => {
                     toast.success("Proposal Approved successfully!", {
                       id: 2,
                     });
-                    navigate("/");
+                    navigate("/details");
                   } catch (error) {
                     toast.error("Error approving proposal.", {
                       id: 2,

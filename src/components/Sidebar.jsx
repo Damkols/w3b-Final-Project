@@ -6,7 +6,14 @@ import { navlinks } from "../constants";
 import useDarkMode from "../hooks/useDarkMode";
 import { BiSolidMoon } from "react-icons/bi";
 
-const Icon = ({ styles, name, imgUrl, isActive, disabled, handleClick }) => (
+export const Icon = ({
+  styles,
+  name,
+  imgUrl,
+  isActive,
+  disabled,
+  handleClick,
+}) => (
   <div
     className={`w-[48px] h-[48px] rounded-[10px] ${
       isActive && isActive === name && "bg-white dark:bg-[#2c2f32]"

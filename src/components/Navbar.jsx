@@ -14,9 +14,9 @@ const Navbar = () => {
 
   return (
     <div className="flex md:flex-row flex-col-reverse justify-between mb-[35px] gap-6">
-      <div className="lg:flex-1 flex flex-row max-w-[458px] py-2 pl-4 pr-2 h-[52px]">
+      <div className="lg:flex-1 flex flex-row max-w-[458px] py-2 pr-2 h-[52px]">
         <h1 className="md:text-4xl md:font-semibold text-[#1c1c24] dark:text-white text-xl">
-          DashBoard
+          Earth-Sustain
         </h1>
       </div>
 
@@ -68,13 +68,15 @@ const Navbar = () => {
 
       {/* Small screen navigation */}
       <div className="sm:hidden flex justify-between items-center relative">
-        <div className="w-[40px] h-[40px] rounded-[10px] bg-[#2c2f32] flex justify-center items-center cursor-pointer">
-          <img
-            src={logo}
-            alt="user"
-            className="w-[60%] h-[60%] object-contain"
-          />
-        </div>
+        <Link to="/">
+          <div className="w-[40px] h-[40px] rounded-[10px] bg-[#2c2f32] flex justify-center items-center cursor-pointer">
+            <img
+              src={logo}
+              alt="user"
+              className="w-[60%] h-[60%] object-contain"
+            />
+          </div>
+        </Link>
 
         <img
           src={menu}

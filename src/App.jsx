@@ -9,6 +9,7 @@ import Details from "./components/Details.jsx";
 import Proposals from "./components/Proposals.jsx";
 import Home from "./pages/Home.jsx";
 import ProposalDetails from "./components/ProposalDetails.jsx";
+import Campaigns from "./pages/Campaigns.jsx";
 
 export default function App() {
   const address = useAddress();
@@ -48,16 +49,26 @@ export default function App() {
     <BrowserRouter>
       <div className="relative sm:-8 p-4 bg-[#F5F5F5] dark:bg-[#13131a] min-h-screen flex flex-row">
         <div className="sm:flex hidden mr-10 relative">
-          <Sidebar />
+          <Routes>
+            <Route path="/:any/*" element={<Sidebar />} />
+          </Routes>
         </div>
         <div className="flex-1 max-sm:w-full max-w-[1280px] mx-auto sm:pr-5">
-          <Navbar />
+          {/* Display Navbar only when not on the landing page */}
+          <Routes>
+            <Route path="/:any/*" element={<Navbar />} />
+          </Routes>
+
           {/* <Header /> */}
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/details/:id" element={<Details />} />
+            <Route path="/details" element={<Campaigns />} />
+            <Route path="/details/:id/*" element={<Details />} />
             <Route path="/proposals" element={<Proposals />} />
-            <Route path="/proposal-details/:id" element={<ProposalDetails />} />
+            <Route
+              path="/proposal-details/:id/*"
+              element={<ProposalDetails />}
+            />
           </Routes>
         </div>
       </div>
