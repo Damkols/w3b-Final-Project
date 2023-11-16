@@ -50,7 +50,7 @@ const Charity = () => {
         <div className="lg:w-1/2 xl:w-3/5 dark:bg-gray-800">
           <div className="flex items-center justify-center p-4 md:p-8 lg:p-12">
             <img
-              src="https://res.cloudinary.com/damkols/image/upload/v1700142312/web3bridge/szhmfdy8ewdmgehtuzs7.jpg"
+              src="https://res.cloudinary.com/damkols/image/upload/v1700148213/web3bridge/oiepu8hmty8csi4cdmxw.jpg"
               alt=""
               className="rounded-lg shadow-lg dark:bg-gray-500 aspect-video sm:min-h-96"
             />
