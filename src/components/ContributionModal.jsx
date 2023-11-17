@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Toaster, toast } from "react-hot-toast";
 import ConfettiExplosion from "react-confetti-explosion";
 import { useNavigate } from "react-router-dom";
+import { shortenAccount } from "../utils";
 function Contribute({
   open,
   onClose,
@@ -23,18 +24,22 @@ function Contribute({
   const [amount, setAmount] = useState("");
   const [confettiCelebration, setConfettiCelebration] = useState(false);
 
+  const [proofModal, setProofModal] = useState(false);
+
   const handleInput = (e) => {
     const value = e.target.value;
-
-    //   if (value < 0.001) {
-    //    toast.error("Amount must be greater than 0.001");
-    //    return;
-    //   }
-
     setAmount(value);
   };
 
   if (!open) return null;
+
+  async function proofOfDonation() {
+    if (!address) {
+      toast.error("Connect Wallet to Contribute to a campaign");
+    } else {
+      setProofModal(true);
+    }
+  }
 
   return (
     <>
@@ -45,7 +50,7 @@ function Contribute({
             Contribute to {campaignTitle} campaign
           </h3>
           <p className="text-sm text-pink-500 text-center mb-4">
-            Created by {owner}
+            Created by {shortenAccount(owner)}
           </p>
           <input
             type="text"
@@ -78,12 +83,13 @@ function Contribute({
                   toast.success("Contributed Succesfully", {
                     id: 2,
                   });
+                  setProofModal(true);
                   setConfettiCelebration(true);
                   onClose();
                   setAmount("");
                   setTimeout(() => {
                     // Code to run
-                    navigate("/details");
+                    // navigate("/details");
                   }, 5000);
                 } catch (error) {
                   toast.error("Error contributing to campaign campaign.", {

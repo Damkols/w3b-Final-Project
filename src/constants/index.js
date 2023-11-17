@@ -30,15 +30,15 @@ export const navlinks = [
   //   link: "/",
   //   disabled: true,
   //  },
-  {
-    name: "profile",
-    imgUrl: profile,
-    link: "/profile",
-  },
-  {
-    name: "logout",
-    imgUrl: logout,
-    link: "/",
-    disabled: true,
-  },
+  // {
+  //   name: "profile",
+  //   imgUrl: profile,
+  //   link: "/profile",
+  // },
+  // {
+  //   name: "logout",
+  //   imgUrl: logout,
+  //   link: "/",
+  //   disabled: true,
+  // },
 ];

@@ -13,42 +13,38 @@ const Navbar = () => {
   const address = useAddress();
 
   return (
-    <div className="flex md:flex-row flex-col-reverse justify-between mb-[35px] gap-6">
-      <div className="lg:flex-1 flex flex-row max-w-[458px] py-2 pr-2 h-[52px]">
+    <div className="flex py-8  md:flex-row flex-col-reverse justify-between gap-6 max-sm:w-full max-w-[1400px] mx-auto">
+      <div className="hidden lg:flex-1 md:flex flex-row max-w-[458px] py-2 pr-2 h-[52px]">
         <h1 className="md:text-4xl md:font-semibold text-[#1c1c24] dark:text-white text-xl">
           Earth-Sustain
         </h1>
       </div>
 
-      <div className="sm:flex hidden flex-row justify-end gap-4">
+      <div className="sm:flex hidden flex-row items-center justify-end gap-4">
         {address && (
-          <button
-            onClick={() => {
-              if (address) navigate("proposals");
-              else connect();
-            }}
-            className="flex justify-center gap-2 items-center relative md:mx-3 rounded-xl border-2 overflow-hidden group py-2 px-4 font-semibold hover:text-white"
-          >
-            <div className="cursor-pointer inline-flex items-center gap-x-1 text-sm text-[#1c1c24] dark:text-white decoration-2 font-medium dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
-              Create Proposal
-            </div>
-            <div className="cursor-pointer inline-flex items-center gap-x-1 text-sm text-[#1c1c24] dark:text-white decoration-2 font-medium dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
-              <svg
-                class="flex-shrink-0 w-4 h-4"
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path d="m9 18 6-6-6-6" />
-              </svg>
-            </div>
-          </button>
+          <Link to="/proposals">
+            <button className="flex justify-center gap-2 items-center relative md:mx-3 rounded-xl border-2 overflow-hidden group py-2 px-4 font-semibold hover:text-white">
+              <div className="cursor-pointer inline-flex items-center gap-x-1 text-sm text-[#1c1c24] dark:text-white decoration-2 font-medium dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
+                Create Proposal
+              </div>
+              <div className="cursor-pointer inline-flex items-center gap-x-1 text-sm text-[#1c1c24] dark:text-white decoration-2 font-medium dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
+                <svg
+                  class="flex-shrink-0 w-4 h-4"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="m9 18 6-6-6-6" />
+                </svg>
+              </div>
+            </button>
+          </Link>
         )}
         <ConnectWallet
           theme="dark"
@@ -112,7 +108,7 @@ const Navbar = () => {
                 />
                 <p
                   className={`ml-[20px] font-epilogue font-semibold text-[14px] ${
-                    isActive === link.name ? "text-[#1dc071]" : "text-[#808191]"
+                    isActive === link.name ? "text-[#91be55]" : "text-[#808191]"
                   }`}
                 >
                   {link.name}
@@ -121,17 +117,15 @@ const Navbar = () => {
             ))}
           </ul>
 
-          <div className="flex mx-4">
+          <div className="flex mx-4" onClick={() => setToggleDrawer(false)}>
             {address ? (
-              <CustomButton
-                btnType="button"
-                title="Create a proposal"
-                styles={address ? "bg-[#1dc071]" : "bg-[#8c6dfd]"}
-                handleClick={() => {
-                  if (address) navigate("proposals");
-                  else connect();
-                }}
-              />
+              <Link to="/proposals">
+                <CustomButton
+                  btnType="button"
+                  title="Create a proposal"
+                  styles={address ? "bg-[#1dc071]" : "bg-[#8c6dfd]"}
+                />
+              </Link>
             ) : (
               <ConnectWallet
                 theme="dark"

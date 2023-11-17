@@ -29,15 +29,17 @@ const ProposalDetails = () => {
     status,
     endAt,
   } = state;
-  const date = new Date(endAt * 1000).toLocaleDateString();
   const gatewayUrl = `https://ipfs.io/ipfs/${image.split("//")[1]}`;
   const address = useAddress();
   const [voteModal, setVoteModal] = useState(false);
-  //  const {
-  //   data: daoMembers,
-  //   isLoading,
-  //   isError,
-  //  } = useContractRead(contract, "getDaoMembers");
+
+  const {
+    data: voteTime,
+    isLoading,
+    isError,
+  } = useContractRead(contract, "getVoteTime", [campaignId]);
+
+  const date = new Date(voteTime * 1000).toLocaleDateString();
 
   const { mutateAsync: approveCall } = useContractWrite(
     contract,
@@ -56,7 +58,7 @@ const ProposalDetails = () => {
     <>
       <div className="flex flex-col justify-center items-center gap-3 p-4 md:p-5">
         <img
-          className="w-3/4 h-2/4 rounded-t-xl"
+          className="w-1.5/4 h-1/4 rounded-t-xl"
           src={gatewayUrl}
           alt="Image Description"
         />
@@ -72,6 +74,9 @@ const ProposalDetails = () => {
           >
             Cast your Vote
           </button>
+          <p className="mt-1 text-xl text-gray-900 dark:text-gray-400">
+            Voting ends: {date}
+          </p>
           <VoteModal
             open={voteModal}
             onClose={() => setVoteModal(false)}

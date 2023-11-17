@@ -7,7 +7,9 @@ const Campaigns = () => {
   const abi = goEth.abi;
   return (
     <>
-      <AllCampaigns contractAddress={contractAddress} abi={abi} />
+      <div className="max-sm:w-full max-w-[1400px] mx-auto">
+        <AllCampaigns contractAddress={contractAddress} abi={abi} />
+      </div>
     </>
   );
 };

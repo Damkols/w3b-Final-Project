@@ -1,0 +1,64 @@
+.hero {
+  background-image: url("https://res.cloudinary.com/damkols/image/upload/v1699821975/web3bridge/qnwxivop2egmonzc66v7.jpg");
+  background-color: var(--eerie-black-1);
+  color: var(--white);
+  /* height: 100vh; */
+  padding: 100px 60px;
+  /* display: grid; */
+  align-items: center;
+}
+
+.hero .section-subtitle {
+  --color: var(--white);
+  --ff: var(--ff-inter);
+  --fs: var(--fs-7);
+}
+
+.hero-title {
+  font-size: var(--fs-3);
+  margin: 30px 0;
+  line-height: 1.2;
+}
+
+.hero-text {
+  font-family: var(--ff-inter);
+  font-size: var(--fs-10);
+  letter-spacing: -1px;
+  max-width: 50ch;
+  margin-bottom: 30px;
+}
+
+@media (min-width: 992px) {
+  /**
+    * HERO
+    */
+
+  /* .hero {
+    background-image: url('../images/hero.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: left;
+    min-height: 780px;
+  } */
+}
+
+@media (min-width: 1200px) {
+  /**
+    * HERO
+    */
+
+  /* .hero {
+    padding-block: 200px 325px;
+    background-position: center;
+  } */
+}
+
+@media (max-width: 1200px) {
+  /**
+     * HERO
+     */
+
+  /* .hero {
+    height: 100%;
+  } */
+}

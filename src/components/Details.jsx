@@ -50,10 +50,8 @@ export default function Details() {
     if (contributors) {
       const filter = contributors.map((data) => {
         return {
-          //  id: data.contributors.toNumber(),
           amount: ethers.utils.formatEther(data.balance),
           contributor: data.contributor.toString(),
-          //  date: data.date.toNumber() * 1000,
         };
       });
       setContribution(filter);
@@ -63,21 +61,6 @@ export default function Details() {
     contract,
     "getContributedFunds"
   );
-  //  async function editFunction() {
-  //   if (!address) {
-  //    toast.error("Connect Wallet to delete");
-  //    return;
-  //   }
-  //   setEditModal(true);
-  //  }
-
-  //  async function deleteFunction() {
-  //   if (!address) {
-  //    toast.error("Connect Wallet to delete");
-  //    return;
-  //   }
-  //   setDeleteModal(true);
-  //  }
 
   useEffect(() => {
     getAllContributions();
@@ -123,7 +106,6 @@ export default function Details() {
                 target="_blank"
                 rel="noreferrer"
               >
-                {/* {owner.slice(0, 15)}...{owner.slice(32)} */}
                 {shortenAccount(owner)}
               </a>
             </div>
@@ -138,11 +120,6 @@ export default function Details() {
           <button
             className="bg-white text-red-600 hover:bg-red-500 hover:text-white  p-3 mx-5 rounded-lg font-semibold"
             onClick={async () => {
-              //    if (raised < target) {
-              //     toast.error("Target not reached");
-              //     return;
-              //    }
-
               toast.loading("Claiming Contribution", {
                 id: 2,
               });
@@ -155,7 +132,7 @@ export default function Details() {
                 });
 
                 setTimeout(() => {
-                  navigate("/");
+                  navigate("/details");
                 }, 5000);
               } catch (error) {
                 toast.error("Error Claiming campaign.", {

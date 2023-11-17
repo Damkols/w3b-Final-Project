@@ -1,5 +1,5 @@
 {
-  "address": "0x6907C05eEEa498E366d91692707c1Fa78A5813B7",
+  "address": "0xd4c0eE5F5150D8b5B0f47919ED5704ec84655BF2",
   "abi": [
     {
       "inputs": [
@@ -315,6 +315,28 @@
     },
     {
       "inputs": [
+        { "internalType": "uint256", "name": "id_", "type": "uint256" }
+      ],
+      "name": "getVoteTime",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "daovotetime",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct GofundmeDAO.DAOTime",
+          "name": "",
+          "type": "tuple"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
         { "internalType": "address", "name": "", "type": "address" },
         { "internalType": "uint256", "name": "", "type": "uint256" }
       ],
@@ -333,6 +355,15 @@
     {
       "inputs": [],
       "name": "removeMember",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        { "internalType": "uint256", "name": "_newTime", "type": "uint256" }
+      ],
+      "name": "resetVotePeriod",
       "outputs": [],
       "stateMutability": "nonpayable",
       "type": "function"

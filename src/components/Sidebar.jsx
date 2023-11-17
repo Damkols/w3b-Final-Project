@@ -46,7 +46,7 @@ const Sidebar = () => {
   const [isActive, setIsActive] = useState("dashboard");
 
   return (
-    <div className="flex justify-between items-center flex-col sticky top-5 h-[93vh]">
+    <div className="flex p-4 mr-10 justify-between items-center flex-col sticky top-5 h-[93vh] max-sm:w-full max-w-[1400px] mx-auto">
       <Link to="/">
         <Icon
           styles="w-[52px] h-[52px] bg-white dark:bg-[#2c2f32]"

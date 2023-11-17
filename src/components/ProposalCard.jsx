@@ -16,9 +16,9 @@ const ProposalCard = ({ data }) => {
   const dateInSeconds = Math.floor(new Date(data.endAt).getTime() / 1000);
 
   return (
-    <div className="w-[288px] md:w-full rounded-[15px] dark:bg-[#1c1c24] bg-white cursor-pointer">
+    <div className="w-[288px] md:w-full rounded-[15px] dark:bg-[#1c1c24] bg-white">
       <img
-        className="w-full rounded-t-xl h-[300px] object-cover rounded-[15px]"
+        className="w-full rounded-t-xl h-[200px] object-cover rounded-[15px]"
         src={gatewayUrl}
         alt="Image Description"
       />

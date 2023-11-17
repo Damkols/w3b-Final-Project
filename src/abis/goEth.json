@@ -1,5 +1,5 @@
 {
-  "address": "0x0E88826015c8EE5A8551c1B3725affBd544F1712",
+  "address": "0x6E558e2739eDE6dC41ABa951e9f1aa00749F1aE4",
   "abi": [
     { "inputs": [], "name": "ExceededFundingGoal", "type": "error" },
     { "inputs": [], "name": "InsufficientInput", "type": "error" },

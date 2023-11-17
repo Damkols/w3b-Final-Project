@@ -54,11 +54,11 @@ export default function AllCampaigns({ contractAddress, abi }) {
   return (
     <>
       <Toaster />
-      <div className="mt-10 md:mt-20 md:text-left text-center">
+      <div className="md:mt-4 md:text-left text-center">
         <h1 className="md:text-4xl md:font-semibold text-[#1c1c24] dark:text-white text-xl md:p-0 py-5">
           All Campaigns
         </h1>
-        <div className="grid md:grid-cols-3 gap-10 pt-4 justify-center items-center">
+        <div className="grid md:grid-cols-3 gap-10 pt-4 mt-10 justify-center items-center">
           {reversedcampaignsData.map((data) => (
             <FundCard
               key={uuidv4()}

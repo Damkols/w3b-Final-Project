@@ -5,12 +5,8 @@ import { Toaster, toast } from "react-hot-toast";
 import { ethers } from "ethers";
 import CreateProposal from "./CreateProposal";
 import ProposalCard from "./ProposalCard";
-import daoABi from "../abis/daoAbi.json";
-import myAbi from "../../abi.json";
 
-const Proposals = () => {
-  const contractAddress = daoABi.address;
-  const abi = daoABi.abi;
+const AllProposals = ({ contractAddress, abi }) => {
   const { contract } = useContract(contractAddress, abi);
   const address = useAddress();
   const [createProposalModal, setCreateProposalModal] = useState(false);
@@ -62,12 +58,12 @@ const Proposals = () => {
   return (
     <>
       <Toaster />
-      <div className="mt-20 md:text-left text-center">
+      <div className="mt-4 md:mt-4 md:text-left text-center">
         <div className="flex md:w-full md:justify-between justify-space-between mx-auto flex-wrap-reverse w-1/2">
-          <h1 className="md:text-4xl md:font-semibold text-[#1c1c24] dark:text-white text-xl md:p-0 py-5">
-            Active Proposals:
+          <h1 className="text-center md:text-4xl md:font-semibold text-[#1c1c24] dark:text-white text-xl md:p-0 py-5">
+            Active Proposals
           </h1>
-          <button className="relative md:mx-20 rounded-xl border-4 overflow-hidden group p-2 text-green-500 font-semibold hover:text-white">
+          <button className="relative mt-4 md:mx-20 rounded-xl border-4 overflow-hidden group p-2 text-green-500 font-semibold hover:text-white">
             <div className="absolute w-full h-full  bg-green-500 left-0 top-0 transform translate-x-full group-hover:translate-x-0 transition-transform duration-500"></div>
             <div className="absolute w-full h-full  bg-green-500 left-0 top-0 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500"></div>
             <div className="absolute w-full h-full  bg-green-500 left-0 top-0 transform -translate-y-full group-hover:translate-y-0 transition-transform duration-500"></div>
@@ -101,4 +97,4 @@ const Proposals = () => {
   );
 };
 
-export default Proposals;
+export default AllProposals;
