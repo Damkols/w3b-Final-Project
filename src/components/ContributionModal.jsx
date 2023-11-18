@@ -77,7 +77,7 @@ function Contribute({
                     args: [campaignId],
                     overrides: {
                       value: utils.parseEther(amount.toString()),
-                      gasLimit: 1000000, // override default gas limit
+                      gasLimit: 1000000,
                     },
                   });
                   toast.success("Contributed Succesfully", {

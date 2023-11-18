@@ -77,3 +77,17 @@
     grid-template-columns: repeat(4, 1fr);
   }
 }
+
+@media (max-width: 768px) {
+  .service-card .card-icon {
+    font-size: 2.5rem;
+  }
+
+  .service-card .card-text {
+    font-size: var(--fs-13);
+  }
+
+  span {
+    font-size: var(--fs-13);
+  }
+}

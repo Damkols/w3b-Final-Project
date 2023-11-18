@@ -35,6 +35,7 @@ export default function AllCampaigns({ contractAddress, abi }) {
         target: ethers.utils.formatEther(campaign.fundingGoal),
         raised: ethers.utils.formatEther(campaign.fundingBalance),
         endAt: new Date(campaign.durationTime.toNumber() * 1000),
+        startAt: new Date(campaign.startTime.toNumber() * 1000),
         status: campaign.isActive,
         owner: campaign.owner,
       };

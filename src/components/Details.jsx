@@ -11,7 +11,6 @@ import { PiMaskSadLight } from "react-icons/pi";
 import Contribute from "./ContributionModal";
 import { ethers } from "ethers";
 import { v4 as uuidv4 } from "uuid";
-import myAbi from "../../abi.json";
 import { shortenAccount } from "../utils";
 import goEth from "../abis/goEth.json";
 
@@ -32,19 +31,62 @@ export default function Details() {
     raised,
     status,
     endAt,
+    startAt,
   } = state;
   const date = new Date(endAt * 1000).toLocaleDateString();
   const gatewayUrl = `https://ipfs.io/ipfs/${image.split("//")[1]}`;
   const address = useAddress();
   const [contribution, setContribution] = useState([]);
   const [contributionModal, setContributionModal] = useState(false);
-  const [deleteModal, setDeleteModal] = useState(false);
-  const [editModal, setEditModal] = useState(false);
   const {
     data: contributors,
     isLoading,
     isError,
   } = useContractRead(contract, "getContributors", [campaignId]);
+
+  const date1 = new Date(startAt * 1000).toLocaleString();
+  const date2 = new Date(endAt * 1000).toLocaleString();
+
+  const calculateTimeLeft = () => {
+    // const now = new Date().getTime();
+    const difference = endAt * 1000 - startAt * 1000;
+
+    console.log(difference);
+
+    if (difference > 0) {
+      const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+      const hours = Math.floor(
+        (difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+      );
+      const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+      return {
+        days,
+        hours,
+        minutes,
+        seconds,
+      };
+    } else {
+      // Target date has passed
+      return null;
+    }
+  };
+
+  const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      const timeLeft = calculateTimeLeft();
+      if (timeLeft !== null) {
+        setTimeLeft(timeLeft);
+      } else {
+        clearInterval(timer);
+      }
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
 
   async function getAllContributions() {
     if (contributors) {
@@ -52,6 +94,7 @@ export default function Details() {
         return {
           amount: ethers.utils.formatEther(data.balance),
           contributor: data.contributor.toString(),
+          contriDate: new Date(data.time * 1000).toLocaleDateString(),
         };
       });
       setContribution(filter);
@@ -111,7 +154,18 @@ export default function Details() {
             </div>
             <div>Target : {target} ETH</div>
             <div>Raised {raised} ETH</div>
-            <div>Ends on : {date}</div>
+            <div>Start date : {date1}</div>
+            <div>Ends on : {date2}</div>
+            <div>
+              {timeLeft !== null ? (
+                <p className="text-xs mt-2">
+                  Time left: {timeLeft.days} days, {timeLeft.hours} hours,{" "}
+                  {/* {timeLeft.minutes} minutes, {timeLeft.seconds} seconds */}
+                </p>
+              ) : (
+                <p>Target date has passed</p>
+              )}
+            </div>
           </div>
         </div>
       </div>
@@ -182,9 +236,7 @@ export default function Details() {
                 <tr key={uuidv4()} className="">
                   <td className="md:px-6 px-2 py-3">{contri.contributor}</td>
                   <td className="md:pl-7 px-2 py-3">{contri.amount} ETH</td>
-                  {/* <td className="md:px-6 px-2 py-3">
-          {new Date(contri.date).toLocaleDateString()}
-         </td> */}
+                  <td className="md:px-6 px-2 py-3">{contri.contriDate}</td>
                 </tr>
               ))}
             </tbody>

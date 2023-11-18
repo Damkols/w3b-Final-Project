@@ -63,7 +63,7 @@ const About = () => {
             />
             <span>Why Choose Us</span>
           </p>
-          <h2 className="h2 section-title">
+          <h2 className="h3 section-title">
             Raise Your Hand to Save <strong>World Animals</strong>
           </h2>
           <ul className="tab-nav">

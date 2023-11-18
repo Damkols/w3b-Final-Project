@@ -54,3 +54,25 @@
     --fs-4: 4.1rem;
   }
 }
+
+@media (max-width: 768px) {
+  .cta-content {
+    text-align: center;
+    padding: 60px 20px;
+    margin-block-end: 30px;
+  }
+
+  .cta .section-title {
+    font-size: var(--fs-9);
+    font-weight: var(--fw-500);
+  }
+
+  .cta .contain {
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .cta .section-title {
+    --fs-4: 3rem;
+  }
+}

@@ -13,7 +13,7 @@ const Navbar = () => {
   const address = useAddress();
 
   return (
-    <div className="flex py-8  md:flex-row flex-col-reverse justify-between gap-6 max-sm:w-full max-w-[1400px] mx-auto">
+    <div className="flex px-2 py-2 sm:py-8 sm-px-0  md:flex-row flex-col-reverse justify-between gap-6 max-sm:w-full max-w-[1400px] mx-auto">
       <div className="hidden lg:flex-1 md:flex flex-row max-w-[458px] py-2 pr-2 h-[52px]">
         <h1 className="md:text-4xl md:font-semibold text-[#1c1c24] dark:text-white text-xl">
           Earth-Sustain

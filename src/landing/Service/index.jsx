@@ -27,7 +27,7 @@ const Service = () => {
           />
           <span>What We Do</span>
         </p>
-        <h2 className="h2 section-title">
+        <h2 className="h3 section-title">
           We Work Differently to <strong>keep The World Safe</strong>
         </h2>
         <ul className="service-list">
@@ -36,7 +36,7 @@ const Service = () => {
               <div className="card-icon">
                 <IoLeafOutline />
               </div>
-              <h3 className="h3 card-title">Save Nature</h3>
+              <h3 className="h6 card-title">Save Nature</h3>
               <p className="card-text">
                 Tempor incididunt ut labores dolore magna suspene
               </p>
@@ -51,7 +51,7 @@ const Service = () => {
               <div className="card-icon">
                 <IoEarthOutline />
               </div>
-              <h3 className="h3 card-title">Save Ecology</h3>
+              <h3 className="h6 card-title">Save Ecology</h3>
               <p className="card-text">
                 Tempor incididunt ut labores dolore magna suspene
               </p>
@@ -66,7 +66,7 @@ const Service = () => {
               <div className="card-icon">
                 <IoFlowerOutline />
               </div>
-              <h3 className="h3 card-title">Tree Plantation</h3>
+              <h3 className="h6 card-title">Tree Plantation</h3>
               <p className="card-text">
                 Tempor incididunt ut labores dolore magna suspene
               </p>
@@ -81,12 +81,12 @@ const Service = () => {
               <div className="card-icon">
                 <IoBoatOutline />
               </div>
-              <h3 className="h3 card-title">Clear Ocean</h3>
+              <h3 className="h6 card-title">Clear Ocean</h3>
               <p className="card-text">
                 Tempor incididunt ut labores dolore magna suspene
               </p>
               <a href="#" className="btn-link">
-                <span>Read More</span>
+                <span className="read">Read More</span>
                 <IoArrowForward />
               </a>
             </div>

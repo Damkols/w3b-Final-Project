@@ -6,7 +6,7 @@ const Cta = () => {
     <section className="section cta">
       <div className="contain">
         <div className="cta-content">
-          <h2 className="h2 section-title">324+ Trusted Global Partners</h2>
+          <h2 className="h3 section-title">324+ Trusted Global Partners</h2>
           <button className="btn btn-outline">
             <span>Become a Partner</span>
             <IoHeartOutline />

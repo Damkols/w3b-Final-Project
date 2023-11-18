@@ -17,7 +17,7 @@ const Features = () => {
               {/* <ion-icon name="shield-checkmark-outline"></ion-icon> */}
             </div>
             <div>
-              <h3 className="h4 item-title">Safe Shelter</h3>
+              <h3 className="h5 item-title">Safe Shelter</h3>
               <p className="item-text">
                 Sit amet consecte adiscine eiusm temor ultrices.
               </p>
@@ -29,7 +29,7 @@ const Features = () => {
               {/* <ion-icon name="water-outline"></ion-icon> */}
             </div>
             <div>
-              <h3 className="h4 item-title">Safe Water</h3>
+              <h3 className="h5 item-title">Safe Water</h3>
               <p className="item-text">
                 Sit amet consecte adiscine eiusm temor ultrices.
               </p>
@@ -41,7 +41,7 @@ const Features = () => {
               {/* <ion-icon name="leaf-outline"></ion-icon> */}
             </div>
             <div>
-              <h3 className="h4 item-title">Ecology Save</h3>
+              <h3 className="h5 item-title">Ecology Save</h3>
               <p className="item-text">
                 Sit amet consecte adiscine eiusm temor ultrices.
               </p>
@@ -53,7 +53,7 @@ const Features = () => {
               {/* <ion-icon name="snow-outline"></ion-icon> */}
             </div>
             <div>
-              <h3 className="h4 item-title">Environment</h3>
+              <h3 className="h5 item-title">Environment</h3>
               <p className="item-text">
                 Sit amet consecte adiscine eiusm temor ultrices.
               </p>

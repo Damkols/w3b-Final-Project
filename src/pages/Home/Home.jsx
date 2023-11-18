@@ -1,27 +1,22 @@
 import React from "react";
 import "./Home.css";
-import Hero1 from "../../landing/Hero1";
+import Hero from "../../landing/Hero";
 import About from "../../landing/About";
 import Cta from "../../landing/CTA";
 import Service from "../../landing/Service";
+import Donate from "../../landing/Donate";
+import Partners from "../../landing/Partners";
 // import Service from "../../landing/Service";
 
 const Home = () => {
   return (
     <>
-      {/* <h1>Home</h1> */}
-      <Hero1 />
+      <Hero />
       <About />
       <Cta />
       <Service />
-      {/* <Navbar /> */}
-      {/* <Hero /> */}
-      {/* <Service /> */}
-      {/* <Partners /> */}
-      {/* <Charity /> */}
-      {/* <Donate /> */}
-      {/* <Events /> */}
-      {/* <Footer /> */}
+      <Donate />
+      <Partners />
     </>
   );
 };

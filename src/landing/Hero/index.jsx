@@ -14,10 +14,11 @@ const Hero1 = () => {
             height="7"
             alt="Wavy line"
           />
-          <span>Welcome to WildWeb3</span>
+          <span>Welcome to Earth-Sustain</span>
         </p>
         <h2 className="h1 hero-title">
-          Give Love for Saving <strong>World Animals</strong>
+          Contribute to Saving <br />
+          <strong>The Planet</strong>
         </h2>
         <p className="hero-text">
           Sit amet consectetur adipiscing elit, sed do eiusmod tempor incididunt

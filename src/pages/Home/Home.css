@@ -59,6 +59,8 @@
   --fs-9: 1.5rem;
   --fs-10: 1.4rem;
   --fs-11: 1rem;
+  --fs-12: 0.8rem;
+  --fs-13: 0.65rem;
 
   --fw-300: 300;
   --fw-500: 500;
@@ -218,6 +220,19 @@ html {
   color: var(--white);
   font-size: var(--fs-7);
 }
+.h5 {
+  color: var(--white);
+  font-size: var(--fs-9);
+}
+
+.h6 {
+  color: var(--eerie-black-2);
+  font-size: var(--fs-10);
+}
+.h7 {
+  color: var(--eerie-black-2);
+  font-size: var(--fs-11);
+}
 
 .btn {
   position: relative;
@@ -276,7 +291,7 @@ html {
 }
 
 .section-text {
-  line-height: 2;
+  line-height: 1.5;
 }
 
 .img-cover {
@@ -381,4 +396,14 @@ html {
   /* .section-title {
     line-height: 1.2;
   } */
+}
+
+@media (max-width: 768px) {
+  .section-subtitle {
+    font-size: var(--fs, var(--fs-11));
+  }
+
+  :root {
+    --section-padding: 20px;
+  }
 }

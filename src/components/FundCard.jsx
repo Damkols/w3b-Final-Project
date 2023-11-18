@@ -1,11 +1,9 @@
 import React, { useState } from "react";
-import Details from "./Details";
 import { useNavigate } from "react-router-dom";
 import ProgressBar from "@ramonak/react-progress-bar";
 import { ethers } from "ethers";
-import { Toaster, toast } from "react-hot-toast";
+import { toast } from "react-hot-toast";
 import { useAddress } from "@thirdweb-dev/react";
-import Contribute from "./ContributionModal";
 import { shortenAccount } from "../utils";
 
 const FundCard = ({ data, contractAddress, abi }) => {
@@ -29,6 +27,9 @@ const FundCard = ({ data, contractAddress, abi }) => {
 
   const gatewayUrl = `https://ipfs.io/ipfs/${url.split("//")[1]}`;
   const dateInSeconds = Math.floor(new Date(data.endAt).getTime() / 1000);
+  const startDateInSeconds = Math.floor(
+    new Date(data.startAt).getTime() / 1000
+  );
 
   return (
     <div
@@ -43,6 +44,7 @@ const FundCard = ({ data, contractAddress, abi }) => {
             target: data.target,
             raised: data.raised,
             endAt: dateInSeconds,
+            startAt: startDateInSeconds,
             status: data.status,
             owner: data.owner,
           },

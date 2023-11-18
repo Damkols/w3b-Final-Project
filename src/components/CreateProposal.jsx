@@ -12,7 +12,6 @@ import { useDropzone } from "react-dropzone";
 
 const CreateProposal = ({ showModal, closeModal, contractAddress, abi }) => {
   const { contract } = useContract(contractAddress, abi);
-  const storage = useStorage();
   const [proposalImage, setProposalImage] = useState("");
   const [imageSet, setImageSet] = useState(false);
   const [title, setTitle] = useState("");
