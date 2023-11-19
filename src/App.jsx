@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import Navbar from "./components/Navbar";
 import { useAddress } from "@thirdweb-dev/react";
-import myAbi from "../abi.json";
 import Sidebar from "./components/Sidebar";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./index.css";
@@ -10,10 +9,14 @@ import ProposalDetails from "./components/ProposalDetails.jsx";
 import Campaigns from "./pages/Campaigns.jsx";
 import Home from "./pages/Home/Home.jsx";
 import Proposals from "./pages/Proposals.jsx";
+import daoABi from "./abis/daoAbi.json";
 
 export default function App() {
   const address = useAddress();
   const desiredChainId = "0xAA36A7";
+
+  //84531
+  //0x14a33
 
   const connectToSepoliaTestnet = async () => {
     if (address) {
@@ -43,7 +46,7 @@ export default function App() {
   };
   useEffect(() => {
     connectToSepoliaTestnet();
-  }, [myAbi.address]);
+  }, [daoABi.address]);
 
   return (
     <BrowserRouter>

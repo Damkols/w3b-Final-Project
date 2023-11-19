@@ -19,6 +19,25 @@ const activeChain = {
   chain: "Sepolia",
   name: "Sepolia Testnet",
 };
+
+// const activeChain = {
+//   chainId: 84531,
+//   rpc: [
+//     "https://base-goerli.g.alchemy.com/v2/p_FW33FnoFWtOK8hes1kEA26QSPZIvAr",
+//   ],
+
+//   nativeCurrency: {
+//     decimals: 18,
+//     name: "Ether",
+//     symbol: "ETH",
+//   },
+//   shortName: "Base Goerli testnet",
+//   slug: "basegoerli",
+//   testnet: true,
+//   chain: "Base Goerli testnet",
+//   name: "Base Goerli Testnet",
+// };
+
 // const clientId = process.env.REACT_APP_THIRDWEB_CLIENT_ID;
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -27,6 +46,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       // clientId={import.meta.env.VITE_CLIENT_ID}
       clientId="f0d9bfeee428cdd3ba34e13869e2fd12"
       chainId={11155111}
+      // chainId={84531}
       supportedChains={[activeChain]}
       autoConnect={true}
     >

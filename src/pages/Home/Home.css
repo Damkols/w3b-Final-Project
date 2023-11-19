@@ -213,7 +213,7 @@ html {
 
 .h3 {
   font-size: var(--fs-7);
-  color: var(--eerie-black-2);
+  /* color: var(--eerie-black-2); */
 }
 
 .h4 {

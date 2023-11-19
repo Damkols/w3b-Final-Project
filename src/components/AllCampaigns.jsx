@@ -4,6 +4,7 @@ import { Toaster, toast } from "react-hot-toast";
 import { ethers } from "ethers";
 import FundCard from "./FundCard";
 import { v4 as uuidv4 } from "uuid";
+import { MutatingDots } from "react-loader-spinner";
 
 export default function AllCampaigns({ contractAddress, abi }) {
   const { contract } = useContract(contractAddress, abi);
@@ -59,16 +60,34 @@ export default function AllCampaigns({ contractAddress, abi }) {
         <h1 className="md:text-4xl md:font-semibold text-[#1c1c24] dark:text-white text-xl md:p-0 py-5">
           All Campaigns
         </h1>
-        <div className="grid md:grid-cols-3 gap-10 pt-4 mt-10 justify-center items-center">
-          {reversedcampaignsData.map((data) => (
-            <FundCard
-              key={uuidv4()}
-              data={data}
-              contractAddress={contractAddress}
-              abi={abi}
-            />
-          ))}
-        </div>
+        {isLoading && (
+          <div className="flex justify-center h-screen">
+            <MutatingDots
+              height="100"
+              width="100"
+              color="#1dc071"
+              secondaryColor="#1dc071"
+              radius="12.5"
+              ariaLabel="mutating-dots-loading"
+              wrapperStyle={{}}
+              wrapperClass=""
+              visible={true}
+            />{" "}
+          </div>
+        )}
+        {error && <p>Error Loading Campaigns</p>}
+        {!isLoading && !error && (
+          <div className="grid md:grid-cols-3 gap-10 pt-4 mt-10 justify-center items-center">
+            {reversedcampaignsData.map((data) => (
+              <FundCard
+                key={uuidv4()}
+                data={data}
+                contractAddress={contractAddress}
+                abi={abi}
+              />
+            ))}
+          </div>
+        )}
       </div>
     </>
   );

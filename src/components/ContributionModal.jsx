@@ -5,6 +5,7 @@ import { Toaster, toast } from "react-hot-toast";
 import ConfettiExplosion from "react-confetti-explosion";
 import { useNavigate } from "react-router-dom";
 import { shortenAccount } from "../utils";
+import SuccessModal from "./SucessModal";
 function Contribute({
   open,
   onClose,
@@ -83,14 +84,14 @@ function Contribute({
                   toast.success("Contributed Succesfully", {
                     id: 2,
                   });
-                  setProofModal(true);
                   setConfettiCelebration(true);
                   onClose();
                   setAmount("");
                   setTimeout(() => {
+                    setProofModal(true);
                     // Code to run
                     // navigate("/details");
-                  }, 5000);
+                  }, 2000);
                 } catch (error) {
                   toast.error("Error contributing to campaign campaign.", {
                     id: 2,
@@ -101,8 +102,12 @@ function Contribute({
             >
               Contribute
             </button>
-            {confettiCelebration && <ConfettiExplosion />}
+            {/* {proofModal && <ConfettiExplosion />} */}
           </div>
+          {proofModal && (
+            // Render your SuccessModal component here
+            <SuccessModal onClose={() => setProofModal(false)} />
+          )}
         </div>
       </div>
     </>

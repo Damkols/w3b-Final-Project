@@ -26,9 +26,9 @@
   margin-bottom: 30px;
 }
 
-span {
+/* span {
   font-size: var(--fs-9);
-}
+} */
 
 @media (max-width: 768px) {
   .hero .section-subtitle {

@@ -5,6 +5,7 @@ import { Toaster, toast } from "react-hot-toast";
 import { ethers } from "ethers";
 import CreateProposal from "./CreateProposal";
 import ProposalCard from "./ProposalCard";
+import { MutatingDots } from "react-loader-spinner";
 
 const AllProposals = ({ contractAddress, abi }) => {
   const { contract } = useContract(contractAddress, abi);
@@ -73,17 +74,34 @@ const AllProposals = ({ contractAddress, abi }) => {
             </span>
           </button>
         </div>
-
-        <div className="grid md:grid-cols-3 gap-10 pt-4 justify-center items-center">
-          {reversedProposalData.map((data) => (
-            <ProposalCard
-              key={uuidv4()}
-              data={data}
-              contractAddress={contractAddress}
-              abi={abi}
-            />
-          ))}
-        </div>
+        {isLoading && (
+          <div className="flex justify-center h-screen">
+            <MutatingDots
+              height="100"
+              width="100"
+              color="#1dc071"
+              secondaryColor="#1dc071"
+              radius="12.5"
+              ariaLabel="mutating-dots-loading"
+              wrapperStyle={{}}
+              wrapperClass=""
+              visible={true}
+            />{" "}
+          </div>
+        )}
+        {error && <p>Error Loading Proposal</p>}
+        {!isLoading && !error && (
+          <div className="grid md:grid-cols-3 gap-10 pt-4 justify-center items-center">
+            {reversedProposalData.map((data) => (
+              <ProposalCard
+                key={uuidv4()}
+                data={data}
+                contractAddress={contractAddress}
+                abi={abi}
+              />
+            ))}
+          </div>
+        )}
       </div>
       {createProposalModal && (
         <CreateProposal
