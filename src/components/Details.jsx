@@ -173,16 +173,15 @@ export default function Details() {
                 <div>Raised {raised} ETH</div>
                 <div>Start date : {date1}</div>
                 <div>Ends on : {date2}</div>
-                <div>
+                {/* <div>
                   {timeLeft !== null ? (
                     <p className="text-xs mt-2">
                       Time left: {timeLeft.days} days, {timeLeft.hours} hours,{" "}
-                      {/* {timeLeft.minutes} minutes, {timeLeft.seconds} seconds */}
                     </p>
                   ) : (
                     <p>Target date has passed</p>
                   )}
-                </div>
+                </div> */}
               </div>
             </div>
           </div>

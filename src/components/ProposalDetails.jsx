@@ -40,7 +40,19 @@ const ProposalDetails = () => {
     isError,
   } = useContractRead(contract, "getVoteTime", [campaignId]);
 
-  const date = new Date(voteTime * 1000).toLocaleDateString();
+  const {
+    data: yayVotes,
+    // isLoading,
+    // isError,
+  } = useContractRead(contract, "getYayVotes", [campaignId]);
+
+  const {
+    data: nayVotes,
+    // isLoading,
+    // isError,
+  } = useContractRead(contract, "getNayVotes", [campaignId]);
+
+  const date = new Date(voteTime * 1000).toLocaleString();
 
   const { mutateAsync: approveCall } = useContractWrite(
     contract,
@@ -75,11 +87,13 @@ const ProposalDetails = () => {
       {isError && <p>Error Loading Campaigns</p>}
       {!isLoading && !isError && (
         <div className="flex flex-col justify-center items-center gap-3 p-4 md:p-5">
-          <img
-            className="w-1.5/4 h-1/4 rounded-t-xl"
-            src={gatewayUrl}
-            alt="Image Description"
-          />
+          <div className="flex justify-center items-center w-2/4">
+            <img
+              className="w-3/4 h-1/4 rounded-t-xl"
+              src={gatewayUrl}
+              alt="Image Description"
+            />
+          </div>
           <div className="flex flex-col justify-center items-center gap-3 p-4 md:p-5">
             <h3 className="text-lg font-bold text-gray-800 dark:text-white">
               {title}
@@ -94,8 +108,16 @@ const ProposalDetails = () => {
             >
               Cast your Vote
             </button>
+            <div className="flex gap-5">
+              <p className="mt-1 text-xl bg-[#1dc0b2] rounded-lg p-5 text-gray-900 dark:text-gray-400">
+                Yes: {Number(yayVotes)}
+              </p>
+              <p className="mt-1 text-xl bg-[#1dc0b2] rounded-lg p-5 text-gray-900 dark:text-gray-400">
+                No: {Number(nayVotes)}
+              </p>
+            </div>
             <p className="mt-1 text-xl text-gray-900 dark:text-gray-400">
-              Voting ends: {date}
+              Voting ends: <span className="">{date}</span>
             </p>
             <VoteModal
               open={voteModal}

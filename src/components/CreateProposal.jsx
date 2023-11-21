@@ -52,6 +52,17 @@ const CreateProposal = ({ showModal, closeModal, contractAddress, abi }) => {
   );
   const { getRootProps, getInputProps } = useDropzone({ onDrop });
 
+  const handleInput = (e) => {
+    const value = e.target.value;
+
+    if (value < 0) {
+      toast.error("Amount must be greater than 0");
+      return;
+    }
+
+    setTargetAmount(e.target.value);
+  };
+
   return (
     <div
       className={`fixed top-0 left-0 h-screen w-screen bg-opacity-50 bg-black flex justify-center z-50 items-center ${
@@ -116,7 +127,7 @@ const CreateProposal = ({ showModal, closeModal, contractAddress, abi }) => {
               id="targetAmount"
               className="w-full px-4 py-2 rounded-lg border border-gray-300 mb-2 md:mb-4"
               value={targetAmount}
-              onChange={(e) => setTargetAmount(e.target.value)}
+              onChange={handleInput}
             />
             {/* Duration */}
             <label htmlFor="duration" className="block mb-1 font-semibold">
@@ -137,6 +148,13 @@ const CreateProposal = ({ showModal, closeModal, contractAddress, abi }) => {
                 <option value="5">5 days</option>
                 <option value="6">6 days</option>
                 <option value="7">7 days</option>
+                <option value="7">8 days</option>
+                <option value="7">9 days</option>
+                <option value="7">10 days</option>
+                <option value="7">15 days</option>
+                <option value="7">20 days</option>
+                <option value="7">25 days</option>
+                <option value="7">30 days</option>
               </select>
             </div>
           </div>

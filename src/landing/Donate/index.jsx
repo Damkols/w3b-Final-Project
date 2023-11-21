@@ -12,7 +12,7 @@ const Donate = () => {
     {
       imageSrc:
         "https://res.cloudinary.com/damkols/image/upload/v1700091915/web3bridge/ghskcher8qqx6pdn1i3i.jpg",
-      title: "Raise Hands To Save the Ocean",
+      title: "Raise Hands To Clean up the Ocean",
     },
     {
       imageSrc:

@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Toaster, toast } from "react-hot-toast";
 import ConfettiExplosion from "react-confetti-explosion";
 import { useNavigate } from "react-router-dom";
+import { shortenAccount } from "../utils";
 function VoteModal({
   open,
   onClose,
@@ -19,37 +20,32 @@ function VoteModal({
     isLoading,
     error,
   } = useContractWrite(contract, "vote");
-  const [amount, setAmount] = useState("");
   const [confettiCelebration, setConfettiCelebration] = useState(false);
 
-  const handleInput = (e) => {
-    const value = e.target.value;
-
-    if (value <= 0) {
-      toast.error("Amount must be greater than 0");
-      return;
-    }
-
-    setAmount(value);
-  };
+  // contract.events.listenToAllEvents((event) => {
+  //   console.log(event.Vote); // the name of the emitted event
+  //   console.log(event._id, event.member); // event payload
+  // });
 
   if (!open) return null;
 
   return (
     <>
       <Toaster />
-      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4">
-        <div className="bg-white rounded-lg p-6 max-w-sm">
+      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-6">
+        <div className="bg-white rounded-lg p-10 max-w-xl">
           <h3 className="text-lg font-bold text-center mb-4 mt-0 pt-0">
             {campaignTitle}
           </h3>
           <p className="text-sm text-pink-500 text-center mb-4">
             Created by {owner}
           </p>
+          <p className="text-sm text-black-500 text-center mb-4">
+            Vote for this Proposal
+          </p>
           <div className="flex justify-center items-center gap-3 mt-10">
             <button
               className="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-green-500 text-white hover:bg-green-600 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-              contractAddress={contractAddress}
               onClick={async () => {
                 toast.loading("Voting for proposal...", {
                   id: 2,
@@ -63,24 +59,22 @@ function VoteModal({
                   });
                   setConfettiCelebration(true);
                   onClose();
-                  setAmount("");
                   setTimeout(() => {
                     // Code to run
                     navigate("/proposals");
                   }, 5000);
                 } catch (error) {
-                  toast.error("Error voting for proposal.", {
+                  toast.error("You are ineligible to Vote.", {
                     id: 2,
                   });
                   console.error(error);
                 }
               }}
             >
-              Yay
+              Yes
             </button>
             <button
               className="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-yellow-500 text-white hover:bg-yellow-600 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-              contractAddress={contractAddress}
               onClick={async () => {
                 toast.loading("Voting for proposal...", {
                   id: 2,
@@ -94,20 +88,19 @@ function VoteModal({
                   });
                   setConfettiCelebration(true);
                   onClose();
-                  setAmount("");
                   setTimeout(() => {
                     // Code to run
                     navigate("/proposals");
                   }, 5000);
                 } catch (error) {
-                  toast.error("Error voting for proposal.", {
+                  toast.error("You are ineligible to Vote.", {
                     id: 2,
                   });
                   console.error(error);
                 }
               }}
             >
-              Nay
+              No
             </button>
           </div>
           <div className="flex justify-around pt-5">
