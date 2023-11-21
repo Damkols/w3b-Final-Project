@@ -205,7 +205,7 @@ export default function Details() {
                       navigate("/details");
                     }, 5000);
                   } catch (error) {
-                    toast.error("Error Claiming campaign.", {
+                    toast.error("You can't claim ths Contribution barawo.", {
                       id: 2,
                     });
                     console.error(error);

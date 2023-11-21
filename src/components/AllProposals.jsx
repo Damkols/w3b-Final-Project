@@ -48,7 +48,10 @@ const AllProposals = ({ contractAddress, abi }) => {
     const activeProposals = proposals.filter(
       (proposal) => proposal.status === true
     );
-    setProposalData(activeProposals);
+    const filteredProposals = activeProposals.filter(
+      (proposal) => proposal.id !== 3
+    );
+    setProposalData(filteredProposals);
   }
   useEffect(() => {
     getAllProposals();
