@@ -1,5 +1,5 @@
 {
-  "address": "0x4CE64d39e7EB5c76c1542Cd037a727f35582B259",
+  "address": "0xD34EbECb8F8765B858546c6AFC8E60168cc192FF",
   "abi": [
     { "inputs": [], "name": "ExceededFundingGoal", "type": "error" },
     { "inputs": [], "name": "InsufficientInput", "type": "error" },
@@ -335,6 +335,13 @@
           "type": "tuple"
         }
       ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+      "name": "hasClaimedFunds",
+      "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
       "stateMutability": "view",
       "type": "function"
     },
