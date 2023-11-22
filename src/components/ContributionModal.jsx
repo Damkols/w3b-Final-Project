@@ -81,9 +81,12 @@ function Contribute({
                       gasLimit: 1000000,
                     },
                   });
-                  toast.success("Contributed Succesfully", {
-                    id: 2,
-                  });
+                  toast.success(
+                    "You have been minted Proof of Donation NFT for supporting a noble cause",
+                    {
+                      id: 2,
+                    }
+                  );
                   setConfettiCelebration(true);
                   onClose();
                   setAmount("");

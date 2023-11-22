@@ -148,14 +148,15 @@ export default function Details() {
               />
             </div>
 
-            <div className="flex flex-col md:w-80 w-full justify-between text-center md:text-left mt-10 md:m-0 text-[#1c1c24] dark:text-white">
-              <div className="md:h-1/2 h-2/3 border-b-8 border-green-400 flex flex-col justify-around">
-                <h2 className="text-3xl font-bold mb-5">
+            <div className="flex flex-col w-full justify-between text-center md:text-left mt-10 md:m-0 text-[#1c1c24] dark:text-white">
+              <div className="md:border-b-8 border-green-400 flex flex-col justify-around">
+                <h2 className="text-3xl font-bold mb-5 mt-10">
                   {title}
                   {address == owner && <></>}
                 </h2>
-
-                <p className="mb-4 text-xl pb-5">{description}</p>
+                <div className="w-full">
+                  <p className="md:mb-4 text-xl pb-5">{description}</p>
+                </div>
               </div>
               <div className="flex flex-col justify-around md:h-1/2 text-xl font-semibold mt-8">
                 <div>
@@ -185,7 +186,7 @@ export default function Details() {
               </div>
             </div>
           </div>
-          <div className="my-14 flex md:justify-end justify-center md:w-4/5 w-full">
+          <div className="my-10 flex md:justify-end justify-center md:w-4/5 w-full">
             {address == owner && (
               <button
                 className="bg-white text-red-600 hover:bg-red-500 hover:text-white  p-3 mx-5 rounded-lg font-semibold"
